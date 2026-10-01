@@ -1,0 +1,99 @@
+apiVersion: digital-employee/v1
+kind: DigitalEmployee
+metadata:
+  id: de_local_member_awakener
+  name: 会员唤醒师
+  alias: null
+  repo: de-local-member-awakener
+  card_no: 7.4.7 ⑥
+  group: local
+  group_label: 本地生活服务商家
+  phase: '**P1 二期**（见效周期 1–3 个月，续费驱动型）'
+  complexity: M
+  score: 20
+  price: 100–300 元/月；**代配置服务加成：300–800 元/次**（历史会员台账整理导入+首批召回活动策划）
+  channels:
+  - GitHub（必备）
+  - 小红书
+  - '**千问办公**（Excel 台账场景契合办公入口）'
+  - 豆包工作
+  license: Proprietary
+  version: 1.0.0
+spec:
+  positioning: 把储值卡里沉睡的现金流一笔笔唤醒
+  users: 美业/健身/教培/餐饮储值型门店
+  boundary: '**做**：会员分层、召回话术与券包、触达时机推荐、储值流失预警；**不做**：不自动扣费续卡、不群发骚扰（单次活动触达频次 ≤1 次/周/人）'
+  kpi: 复购率 15%→25%（爱美云案例已验证，凤凰网，据 R4 调研）；90 天沉睡会员召回率 ≥8%
+  roi_summary: 复购率 15%→25% 已被案例验证（据 R4 调研）；对储值型门店等于直接挽回现金流
+  demand_refs:
+  - D21
+  demand_support: 中等
+  demand_evidence: 低
+runtime:
+  system_prompt: persona/system-prompt.md
+  boundary: persona/boundary.md
+  kpi: persona/kpi.md
+deliverables:
+  skills:
+  - slug: member-data-sync
+    name: 会员数据对接
+    kind: private
+    path: skills/member-data-sync
+    version: 1.0.0
+    maturity: contract-complete
+  - slug: winback-copy-generator
+    name: 召回文案生成
+    kind: private
+    path: skills/winback-copy-generator
+    version: 1.0.0
+    maturity: contract-complete
+  workflows:
+  - slug: wf-local-member-segment
+    name: 会员分层（RFM）
+    path: workflows/wf-local-member-segment
+    version: 1.0.0
+    phase: P1
+    calls:
+    - member-data-sync
+    - rfm-segmentation
+  - slug: wf-local-member-wakeup-copy
+    name: 召回话术与券包生成
+    path: workflows/wf-local-member-wakeup-copy
+    version: 1.0.0
+    phase: P1
+    calls:
+    - winback-copy-generator
+    - coupon-strategy
+  - slug: wf-local-member-touch-timing
+    name: 触达时机推荐
+    path: workflows/wf-local-member-touch-timing
+    version: 1.0.0
+    phase: P1
+    calls:
+    - scheduled-dispatch
+  - slug: wf-local-member-repurchase-attribution
+    name: 复购效果归因
+    path: workflows/wf-local-member-repurchase-attribution
+    version: 1.0.0
+    phase: P2
+    calls:
+    - member-data-sync
+    - rfm-segmentation
+  - slug: wf-local-member-storedvalue-churn
+    name: 储值流失预警
+    path: workflows/wf-local-member-storedvalue-churn
+    version: 1.0.0
+    phase: P1
+    calls:
+    - rfm-segmentation
+  knowledge_base: kb/
+  connectors: connectors/bindings.yaml
+external_dependencies:
+- repo: agent-skills-core
+  version: 1.0.0
+  skills:
+  - coupon-strategy
+  - rfm-segmentation
+  - scheduled-dispatch
+  resolution: external
+spec_only_dependencies: []
