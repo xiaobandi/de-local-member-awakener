@@ -1,0 +1,15 @@
+{
+  "name": "wf-local-member-repurchase-attribution",
+  "title": "复购效果归因",
+  "kind": "workflow",
+  "owner": "de-local-member-awakener",
+  "complexity": "M",
+  "phase": "P2",
+  "one_liner": "召回→到店核销链路归因 → 话术迭代",
+  "pages": [
+    "docs/使用手册.html",
+    "docs/使用示例.html",
+    "docs/用户场景.html",
+    "docs/架构与流程图.html"
+  ]
+}

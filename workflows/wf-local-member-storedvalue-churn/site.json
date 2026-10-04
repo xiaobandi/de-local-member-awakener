@@ -1,0 +1,15 @@
+{
+  "name": "wf-local-member-storedvalue-churn",
+  "title": "储值流失预警",
+  "kind": "workflow",
+  "owner": "de-local-member-awakener",
+  "complexity": "S",
+  "phase": "P1",
+  "one_liner": "余额高但 60 天未到店 → 红色预警+挽留方案",
+  "pages": [
+    "docs/使用手册.html",
+    "docs/使用示例.html",
+    "docs/用户场景.html",
+    "docs/架构与流程图.html"
+  ]
+}

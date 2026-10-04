@@ -1,35 +1,43 @@
 ---
-name: wf-local-member-storedvalue-churn
+name: wf-local-member-repurchase-attribution
 description: >-
-  会员唤醒师 的「储值流失预警」工作流：余额高但 60 天未到店 → 红色预警+挽留方案。触发方式：定时（每周）。
-  当用户要完成「储值流失预警」这件事、或触发了上述条件时使用。
+  会员唤醒师 的「复购效果归因」工作流：召回→到店核销链路归因 → 话术迭代。触发方式：定时（每月）。
+  当用户要完成「复购效果归因」这件事、或触发了上述条件时使用。
 license: Proprietary
+compatibility: >-
+  需要能读取工作区文件；若环境支持执行代码，将额外启用 scripts/ 下的确定性脚本路径。
+  跨 WorkBuddy / ChatGPT / DeepSeek Harness / Kimi Work / 豆包工作。
 metadata:
   author: PLATFORM
   version: "1.0.0"
   standard: agent-skills/v1
+  library: agent-skills-library
   layer: L2-workflow
   owner: de_local_member_awakener
-  complexity: S
-  phase: P1
+  repo: de-local-member-awakener
+  visibility: private_to_employee
+  delivery: employee
+  complexity: M
+  phase: P2
   source: new
 ---
 
-# 储值流失预警
+# 复购效果归因
 
-> 归属：**会员唤醒师**（`de-local-member-awakener`）　触发：定时（每周）　
-> 复杂度 S　阶段 P1
+> 归属：**会员唤醒师**（`de-local-member-awakener`）　触发：定时（每月）　
+> 复杂度 M　阶段 P2
 
 ## 一、这条工作流解决什么
 
-余额高但 60 天未到店 → 红色预警+挽留方案
+召回→到店核销链路归因 → 话术迭代
 
-**业务收益**：储值客户流失=现金流流失，预警即止损
+**业务收益**：让召回动作可优化而非玄学
 
 ## 二、调用的 SKILL（必填列，逐条锁定版本）
 
 | 技能名 | slug | 来源仓 | 版本 |
 |---|---|---|---|
+| `会员数据对接` | `member-data-sync` | 本仓 | v1.0.0 |
 | `RFM 分层` | `rfm-segmentation` | core | v1.0.0 |
 
 > 公共技能来自 `agent-skills-core@1.0.0`，本仓库只做外部依赖引用，
@@ -37,17 +45,24 @@ metadata:
 
 ## 三、执行步骤（每步四要素齐备）
 
-### 步骤 1：余额高但 60 天未到店
+### 步骤 1：召回
 
-- **做**：余额高但 60 天未到店
+- **做**：召回
 - **输入来源**：用户提供的原始材料（工作流第 1 步没有「上一步」）/ 本员工知识库 `kb/` / 连接器只读数据；三者皆空时必须停在 G1 闸门
 - **依据与结论**：把本步结论对应到具体输入项
 - **未决 · 待填**：缺数据处写 `<待填>` 并给出获取方式
 
-### 步骤 2：红色预警+挽留方案
+### 步骤 2：到店核销链路归因
 
-- **做**：红色预警+挽留方案
+- **做**：到店核销链路归因
 - **输入来源**：步骤 1 的产出 / 本员工知识库 `kb/` / 连接器只读数据
+- **依据与结论**：把本步结论对应到具体输入项
+- **未决 · 待填**：缺数据处写 `<待填>` 并给出获取方式
+
+### 步骤 3：话术迭代
+
+- **做**：话术迭代
+- **输入来源**：步骤 2 的产出 / 本员工知识库 `kb/` / 连接器只读数据
 - **依据与结论**：把本步结论对应到具体输入项
 - **未决 · 待填**：缺数据处写 `<待填>` 并给出获取方式
 

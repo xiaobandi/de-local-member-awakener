@@ -1,0 +1,15 @@
+{
+  "name": "member-data-sync",
+  "title": "会员数据对接",
+  "kind": "skill",
+  "owner": "de-local-member-awakener",
+  "complexity": "M",
+  "phase": "P1",
+  "one_liner": "收银/会员系统数据读取（BusinessConnector）（系统授权 → 会员消费流）",
+  "pages": [
+    "docs/使用手册.html",
+    "docs/使用示例.html",
+    "docs/用户场景.html",
+    "docs/架构与流程图.html"
+  ]
+}
