@@ -3,7 +3,7 @@ name: wf-local-member-storedvalue-churn
 description: >-
   会员唤醒师 的「储值流失预警」工作流：余额高但 60 天未到店 → 红色预警+挽留方案。触发方式：定时（每周）。
   当用户要完成「储值流失预警」这件事、或触发了上述条件时使用。
-license: Proprietary
+license: Apache-2.0
 compatibility: >-
   需要能读取工作区文件；若环境支持执行代码，将额外启用 scripts/ 下的确定性脚本路径。
   跨 WorkBuddy / ChatGPT / DeepSeek Harness / Kimi Work / 豆包工作。

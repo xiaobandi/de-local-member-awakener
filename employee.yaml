@@ -17,7 +17,7 @@ metadata:
   - 小红书
   - '**千问办公**（Excel 台账场景契合办公入口）'
   - 豆包工作
-  license: Proprietary
+  license: Apache-2.0
   version: 1.0.0
 spec:
   positioning: 把储值卡里沉睡的现金流一笔笔唤醒

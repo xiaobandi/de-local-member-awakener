@@ -3,7 +3,7 @@ name: wf-local-member-repurchase-attribution
 description: >-
   会员唤醒师 的「复购效果归因」工作流：召回→到店核销链路归因 → 话术迭代。触发方式：定时（每月）。
   当用户要完成「复购效果归因」这件事、或触发了上述条件时使用。
-license: Proprietary
+license: Apache-2.0
 compatibility: >-
   需要能读取工作区文件；若环境支持执行代码，将额外启用 scripts/ 下的确定性脚本路径。
   跨 WorkBuddy / ChatGPT / DeepSeek Harness / Kimi Work / 豆包工作。
