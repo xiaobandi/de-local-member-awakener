@@ -5,6 +5,12 @@
 > **7.4.7 ⑥**　·　本地生活服务商家　·　阶段 **P1 二期**（见效周期 1–3 个月，续费驱动型）　·　
 > 复杂度 M　·　100–300 元/月；**代配置服务加成：300–800 元/次**（历史会员台账整理导入+首批召回活动策划）　·　定义卡 7.4.7 ⑥
 
+## 演示（真实执行录播）
+
+![演示](workflows/wf-local-member-storedvalue-churn/docs/images/08-demo-run.gif)
+
+*真实执行回放（GIF 自动循环，非摆拍）· [▶ 观看完整版 MP4](workflows/wf-local-member-storedvalue-churn/docs/images/08-demo-run.mp4) · 台账见 [`reports/real-run/wf-local-member-storedvalue-churn.md`](reports/real-run/wf-local-member-storedvalue-churn.md)*
+
 ![架构](docs/images/architecture.svg)
 
 ## 效果（真实执行）
@@ -58,6 +64,7 @@ python3 tests/run.py            # 先跑一遍自检，确认环境与契约都�
 
 ```text
 de-local-member-awakener/
+├── employee.md            # 人读定义卡（12 主字段 + 2 扩展组，由 employee.yaml 生成）
 ├── employee.yaml          # 机器契约（能力清单 + 依赖锁）
 ├── dependencies.yaml      # 对 core 的外部依赖（含版本）
 ├── persona/               # 运行提示词 / 边界 / KPI
